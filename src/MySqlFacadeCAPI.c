@@ -2,8 +2,9 @@
  ============================================================================
  Name        : MySqlFacadeCAPI.c
  Author      : dtsilvers@aol.com
- Date        : 2014-01-30
- Version     : 1.00
+ Created     : 2014-01-30
+ Updated     : 2014-02-28
+ Version     : 1.001
  License     : MIT - SEE: http://opensource.org/licenses/MIT
  Copyright   : Copyright (c) 2014 by David T. Silvers Sr.
  Description : MySQL Facade C API reducing a dozen MySQL calls down to four.
@@ -16,11 +17,6 @@
 #include <stdlib.h>
 #include <mysql.h>
 #include "MySqlFacadeCAPI.h"
-
-void* connectDB(const char *pHost, const int iPort, const char *pDB, const char *pUsr, const char *pPwd);
-DataMSF* executeSqlDB(void *pvConn, const char *pSql);
-void freeResultDB(DataMSF *pDataMSF);
-void closeDB(void *pvConn);
 
 void* connectDB(const char *pHost, const int iPort, const char *pDB, const char *pUsr, const char *pPwd) {
 	MYSQL *conn;
@@ -90,7 +86,6 @@ void freeResultDB(DataMSF *pDataMSF) {
 			free(pDataMSF->ppulFieldLengths);
 		}
 		free(pDataMSF);
-		pDataMSF = NULL;
 	}
 return;
 }
